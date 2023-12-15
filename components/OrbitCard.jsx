@@ -14,16 +14,18 @@ export default function OrbitCard({ navigation, ...props }) {
     };
 
     const handlePress = () => {
-        navigation.navigate('OrbitDet', { name: props.Name })
+        navigation.navigate('Подробнее', { name: props.Name })
     }
-    const imageName = orbitImages[props.Name]
-
+    const imageName = orbitImages[props.Name];
+    const imageUrl = `http://192.168.1.21:9000/pc-bucket/${imageName}`;
+    const defaultImage = require('../assets/DEFAULT.jpg');
     return (
         <View style={styles.card}>
                 <Text style={styles.brandTitle}>{props.Name}</Text>
             <Image
                 style={styles.image}
-                source={{ uri: `http://192.168.1.21:9000/pc-bucket/${imageName}` }}
+                source={{ uri: imageUrl, cache: 'reload' }}
+                defaultSource={defaultImage}
                 resizeMode='contain'
             />
             <TouchableOpacity
@@ -60,6 +62,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     image: { height: 320, alignSelf: 'stretch' },
-    brandTitle: { color: 'black', fontSize: 20 },
+    brandTitle: { color: 'black', fontSize: 20, fontWeight: 'bold' },
     text: { color: '#f0f0f0', fontSize: 16 },
 });

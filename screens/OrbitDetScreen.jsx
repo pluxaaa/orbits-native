@@ -5,7 +5,7 @@ import { setOrbit, resetOrbit } from '../store/orbitSlice';
 import React from 'react';
 import { axiosInstance } from '../api';
 
-export default function OrbitScreen({ route, navigation }) {
+export default function OrbitDetScreen({ route, navigation }) {
   const { name } = route.params;
   const dispatch = useDispatch();
   const { orbit } = useSelector((store) => store.orbit);
@@ -40,8 +40,8 @@ export default function OrbitScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.brandTitle}> {orbit?.Name}</Text>
       <Image source={ { uri: `http://192.168.1.21:9000/pc-bucket/${imageName}` }} style={styles.image} />
-
       <View style={styles.rightContent}>
         <Text>Статус: {orbit?.IsAvailable ? 'Доступна' : 'Недоступна'}</Text>
         <Text>Апогей: {orbit?.Apogee}</Text>
@@ -52,7 +52,7 @@ export default function OrbitScreen({ route, navigation }) {
 
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.navigate('OrbitsAll')}
+        onPress={() => navigation.navigate('Орбиты')}
       >
         <Text style={styles.buttonText}>Назад</Text>
       </TouchableOpacity>
@@ -64,6 +64,7 @@ const styles = {
   container: {
     padding: 16,
   },
+  brandTitle: { color: 'black', fontSize: 20, fontWeight: 'bold' },
   image: { height: 260, alignSelf: 'stretch' },
   rightContent: {
     marginLeft: 8,

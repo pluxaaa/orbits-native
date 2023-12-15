@@ -13,8 +13,8 @@ export default function App() {
       <Provider store={store}>
         <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="OrbitsAll" component={OrbitsAllScreen} />    
-          <Stack.Screen name="OrbitDet" component={OrbitDetScreen} />    
+          <Stack.Screen name="Орбиты" component={OrbitsAllScreen} />    
+          <Stack.Screen name="Подробнее" component={OrbitDetScreen} />    
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

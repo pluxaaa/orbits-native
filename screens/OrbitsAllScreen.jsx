@@ -15,16 +15,27 @@ export default function OrbitsAllScreen({ navigation }) {
   const [isCircleFilter, setIsCircleFilter] = useState(false);
 
   const getAllOrbits = async () => {
-    const response = await axiosInstance.get('/orbits', {
-      params: {
-        orbit_name: nameFilter,
-        orbit_incl: inclFilter ? '1' : '',
-        is_circle: isCircleFilter ? '1' : '',
-      },
-    });
-    console.log("DATA:", response?.data)
-    dispatch(setOrbits(response?.data));
-  };
+    console.log("GETallOrbits");
+    
+      try {
+        const response = await axiosInstance.get('/orbits', {
+          params: {
+            orbit_name: nameFilter,
+            orbit_incl: inclFilter ? '1' : '',
+            is_circle: isCircleFilter ? '1' : '',
+          },
+        });
+    
+        console.log("CONFIG: ", response.config);
+        //console.log("DATA:", response?.data);
+        dispatch(setOrbits(response?.data));
+      } catch (error) {
+        console.log("URL: ", response?.config.url)
+        console.error("Error fetching orbits:", error);
+      }
+    };
+    
+  
 
   const clearFilters = async () => {
     setNameFilter('');
